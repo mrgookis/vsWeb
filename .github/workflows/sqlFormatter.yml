@@ -23,4 +23,4 @@ jobs:
             - name: SQLAutoFormatter
               uses: yoheikikuta/sql-autoformat-action@v1.0.2
               with:
-                github_token: ${{ secrets.github_token }}
+                github_token: ${{ secrets.GREETING_TOKEN }}
