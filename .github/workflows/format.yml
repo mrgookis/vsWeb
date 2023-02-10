@@ -25,12 +25,27 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Change text file
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo "Modified" > new.txt
+
+      - name: Change file in directory
+        run: |
+          echo "Changed" > test_directory/new.txt
+
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v13
+        id: verify-changed-files
+        with:
+          files: |
+             *.txt
+             test_directory
+             action.yml
+             **/*.py
+             !*.sql
+
+      - name: Run step only when any of the above files change.
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        run: |
+          echo "Changed files: ${{ steps.verify-changed-files.outputs.changed_files }}"
+        # Outputs: "Changed files: new.txt test_directory/new.txt"
