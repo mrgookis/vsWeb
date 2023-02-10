@@ -25,22 +25,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Change text file
-        run: |
-          echo "Modified" > new.txt
-
-      - name: Change file in directory
-        run: |
-          echo "Changed" > test_directory/new.txt
-
       - name: Verify Changed files
         uses: tj-actions/verify-changed-files@v13
         id: verify-changed-files
         with:
           files: |
              *.txt
-             test_directory
-             action.yml
+             format.yml
              **/*.py
              !*.sql
 
