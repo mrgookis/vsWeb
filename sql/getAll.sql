@@ -1,3 +1,4 @@
 SELECT
-*
-FROM MY_TABLE;
+  *
+FROM
+  MY_TABLE;
