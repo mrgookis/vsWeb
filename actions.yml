@@ -1,0 +1,7 @@
+name: 'Say Hello'
+descrition: 'Says Hello, World!'
+author: 'mrgookis'
+
+runs:
+  using: 'node16'
+  main: dist/main.js  
